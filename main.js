@@ -12,11 +12,11 @@
 
 // ELEMENT VARIABLES
 var $complete = document.querySelector('#complete');
-var $current = document.querySelector('#current');
+var $current = document.querySelector('.current');
 var $remain = document.querySelector('#remain');
 
 // GLOBAL VARIABLES
-var text = 'abcdefgh';
+var text = 'this is merely a test';
 var isTestActive = false;
 var isTestComplete = false;
 var testData = {
@@ -37,6 +37,8 @@ var testData = {
   }
 };
 
+// FUNCTIONS
+
 function initialize(testData) {
   if (testData.remain.length > 0) {
     isTestActive = true;
@@ -51,9 +53,7 @@ function removeFirstChar(text) {
   return text.substr(1,text.length -1);
 }
 
-function setElementClass(element, className) {
-
-}
+// EVENT LISTENERS
 
 document.addEventListener('keydown', function(event) {
   if (isTestActive) {
@@ -64,12 +64,15 @@ document.addEventListener('keydown', function(event) {
       if (event.key == testData.current) {
         testData.moveTextPos();
         testData.updateElements();
+        $current.setAttribute('id', 'active');
       } else {
         testData.error++;
-
+        $current.setAttribute('id', 'error');
       }
     }
   }
 })
+
+// INITIALIZE
 
 initialize(testData);
