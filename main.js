@@ -14,6 +14,7 @@
 var $complete = document.querySelector('#complete');
 var $current = document.querySelector('.current');
 var $remain = document.querySelector('#remain');
+var $testContent = document.querySelector('.test-content');
 
 // GLOBAL VARIABLES
 var text = 'You are watching me type.';
@@ -70,10 +71,12 @@ document.addEventListener('keydown', function(event) {
       testData.moveTextPos();
       testData.updateElements();
       $current.setAttribute('id', 'active');
+      $testContent.classList.remove('shake');
     } else {
       if (event.key !== 'Shift'){
         testData.error++;
         $current.setAttribute('id', 'error');
+        $testContent.classList.add('shake');
       }
     }
   }
