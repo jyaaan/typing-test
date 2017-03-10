@@ -18,7 +18,6 @@ var $remain = document.querySelector('#remain');
 // GLOBAL VARIABLES
 var text = 'You are watching me type.';
 var isTestActive = false;
-var isTestComplete = false;
 var testData = {
   remain: text,
   current: '',
@@ -28,7 +27,6 @@ var testData = {
     this.complete += this.current;
     this.current = this.remain.substr(0, 1);
     this.remain = removeFirstChar(this.remain);
-    this.pos++;
   },
   updateElements: function() {
     $complete.textContent = this.complete;
