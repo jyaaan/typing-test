@@ -16,16 +16,18 @@ var testData = {
 
 // ELEMENT VARIABLES
 var $complete = document.querySelector('#complete');
-var $focus = document.querySelector('#focus');
+var $current = document.querySelector('#current');
 var $remain = document.querySelector('#remain');
 var $button = document.querySelector('#test-button');
 
 function initialize(testData) {
   if (testData.remain.length > 0) {
     isGameActive = true;
+    testData.moveTextPos();
   } else {
     alert('nothing to test');
   }
+  updateElements(testData);
 }
 
 function removeFirstChar(text) {
@@ -36,12 +38,27 @@ function removeFirstChar(text) {
   }
 }
 
+function moveTextPos() {
+  this.complete += testData.current;
+  this.current = testData.remain.substr(0, 1);
+  this.remain = removeFirstChar(testData.remain);
+  this.pos++;
+}
+
 function setElementClass(element, className) {
 
 }
 
+function updateElements(testData) {
+  $complete.textContent = testData.complete;
+  $current.textContent = testData.current;
+  $remain.textContent = testData.remain;
+}
+
 $button.addEventListener('click', function() {
-  if (goodToGo) {
+  if (isGameActive) {
 
   }
 });
+
+initialize(testData);
