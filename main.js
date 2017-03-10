@@ -48,11 +48,14 @@ function initialize(testData) {
 }
 
 function removeFirstChar(text) {
+  return text.substr(1,text.length -1);
+  /*
   if (text.length !== 1) {
     return text.substr(1,text.length -1);
   } else {
     return '';
   }
+  */
 }
 
 function setElementClass(element, className) {
