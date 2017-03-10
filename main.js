@@ -1,7 +1,13 @@
 /*
   X 1. Create 3 spans, assign colors to each.
-  2. find way to turn string into array
-  3. create button to iterate through text array, changing styles
+  X 2. find way to turn string into array
+  X 3. create button to iterate through text array, changing styles
+  X 4. create function to determine if at the end of the sentence
+  5. create function to determine game state
+  6. create keypress event listener
+  7. determine if pressed key is valid
+  8. create way to update class of span depending on accuracy
+
 */
 
 // ELEMENT VARIABLES
@@ -11,17 +17,16 @@ var $remain = document.querySelector('#remain');
 var $button = document.querySelector('#test-button');
 
 // GLOBAL VARIABLES
-var text = 'abc';
-var isGameActive = false;
+var text = 'abcdefgh';
+var isTestActive = false;
+var isTestComplete = false;
 var testData = {
   remain: text,
   current: '',
-  comlete: '',
-  pos: 0,
+  complete: '',
+  error: 0,
   moveTextPos: function() {
-    if (this.current !== '') {
-      this.complete += this.current;
-    }
+    this.complete += this.current;
     this.current = this.remain.substr(0, 1);
     this.remain = removeFirstChar(this.remain);
     this.pos++;
@@ -35,7 +40,7 @@ var testData = {
 
 function initialize(testData) {
   if (testData.remain.length > 0) {
-    isGameActive = true;
+    isTestActive = true;
     testData.moveTextPos();
   } else {
     alert('nothing to test');
@@ -56,8 +61,13 @@ function setElementClass(element, className) {
 }
 
 $button.addEventListener('click', function() {
-  if (isGameActive) {
-
+  if (isTestActive) {
+    if (testData.remain.length == 0) {
+      alert('done');
+    } else {
+      testData.moveTextPos();
+      testData.updateElements();
+    }
   }
 });
 
