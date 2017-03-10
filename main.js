@@ -57,15 +57,20 @@ function removeFirstChar(text) {
 
 document.addEventListener('keydown', function(event) {
   if (isTestActive) {
-    if (testData.remain.length == 0) {
-      alert(testData.error + ' ' + 'errors');
-      isTestActive = false;
+    if (event.key === testData.current) {
+      if (testData.remain.length === 0) {
+        if (testData.error === 1) {
+          alert('Complete with' + ' ' + testData.error + ' ' + 'error');
+        } else {
+          alert('Complete with' + ' ' + testData.error + ' ' + 'errors');
+        }
+        isTestActive = false;
+      }
+      testData.moveTextPos();
+      testData.updateElements();
+      $current.setAttribute('id', 'active');
     } else {
-      if (event.key == testData.current) {
-        testData.moveTextPos();
-        testData.updateElements();
-        $current.setAttribute('id', 'active');
-      } else {
+      if (event.key !== 'Shift'){
         testData.error++;
         $current.setAttribute('id', 'error');
       }
@@ -73,7 +78,7 @@ document.addEventListener('keydown', function(event) {
   }
 })
 
-// INITIALIZE
+// INITIALIZER
 
 document.addEventListener('DOMContentLoaded', function () {
   initialize(testData);
