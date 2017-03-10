@@ -2,16 +2,24 @@
   color: green;
 }
 
-#current {
-  color: yellow;
+.current {
+  font-weight: bold;
 }
 
 #remain {
   color: black;
 }
 
+#active {
+  color: green;
+}
+
+#error {
+  color: red;
+}
+
 body {
-  background-color: blue;
+  background-color: light-blue;
 }
 
 * {
