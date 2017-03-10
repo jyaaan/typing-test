@@ -53,17 +53,20 @@ function removeFirstChar(text) {
   return text.substr(1,text.length -1);
 }
 
+function alertOnComplete(error) {
+  if (error === 1) {
+    alert('Completed with' + ' ' + testData.error + ' ' + 'error');
+  } else {
+    alert('Completed with' + ' ' + testData.error + ' ' + 'errors');
+  }
+}
 // EVENT LISTENERS
 
 document.addEventListener('keydown', function(event) {
   if (isTestActive) {
     if (event.key === testData.current) {
       if (testData.remain.length === 0) {
-        if (testData.error === 1) {
-          alert('Complete with' + ' ' + testData.error + ' ' + 'error');
-        } else {
-          alert('Complete with' + ' ' + testData.error + ' ' + 'errors');
-        }
+        alertOnComplete(testData.errors);
         isTestActive = false;
       }
       testData.moveTextPos();
