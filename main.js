@@ -4,8 +4,8 @@
   X 3. create button to iterate through text array, changing styles
   X 4. create function to determine if at the end of the sentence
   5. create function to determine game state
-  6. create keypress event listener
-  7. determine if pressed key is valid
+  X 6. create keypress event listener
+  X 7. determine if pressed key is valid
   8. create way to update class of span depending on accuracy
 
 */
@@ -14,7 +14,6 @@
 var $complete = document.querySelector('#complete');
 var $current = document.querySelector('#current');
 var $remain = document.querySelector('#remain');
-var $button = document.querySelector('#test-button');
 
 // GLOBAL VARIABLES
 var text = 'abcdefgh';
@@ -60,16 +59,18 @@ function setElementClass(element, className) {
 
 }
 
-$button.addEventListener('click', function() {
+document.addEventListener('keydown', function(event) {
   if (isTestActive) {
     if (testData.remain.length == 0) {
       alert('done');
       isTestActive = false;
     } else {
-      testData.moveTextPos();
-      testData.updateElements();
+      if (event.key == testData.current) {
+        testData.moveTextPos();
+        testData.updateElements();
+      }
     }
   }
-});
+})
 
 initialize(testData);
