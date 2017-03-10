@@ -4,6 +4,12 @@
   3. create button to iterate through text array, changing styles
 */
 
+// ELEMENT VARIABLES
+var $complete = document.querySelector('#complete');
+var $current = document.querySelector('#current');
+var $remain = document.querySelector('#remain');
+var $button = document.querySelector('#test-button');
+
 // GLOBAL VARIABLES
 var text = 'abc';
 var isGameActive = false;
@@ -11,14 +17,21 @@ var testData = {
   remain: text,
   current: '',
   comlete: '',
-  pos: 0
+  pos: 0,
+  moveTextPos: function() {
+    if (this.current !== '') {
+      this.complete += this.current;
+    }
+    this.current = this.remain.substr(0, 1);
+    this.remain = removeFirstChar(this.remain);
+    this.pos++;
+  },
+  updateElements: function() {
+    $complete.textContent = this.complete;
+    $current.textContent = this.current;
+    $remain.textContent = this.remain;
+  }
 };
-
-// ELEMENT VARIABLES
-var $complete = document.querySelector('#complete');
-var $current = document.querySelector('#current');
-var $remain = document.querySelector('#remain');
-var $button = document.querySelector('#test-button');
 
 function initialize(testData) {
   if (testData.remain.length > 0) {
@@ -27,7 +40,7 @@ function initialize(testData) {
   } else {
     alert('nothing to test');
   }
-  updateElements(testData);
+  testData.updateElements();
 }
 
 function removeFirstChar(text) {
@@ -38,21 +51,8 @@ function removeFirstChar(text) {
   }
 }
 
-function moveTextPos() {
-  this.complete += testData.current;
-  this.current = testData.remain.substr(0, 1);
-  this.remain = removeFirstChar(testData.remain);
-  this.pos++;
-}
-
 function setElementClass(element, className) {
 
-}
-
-function updateElements(testData) {
-  $complete.textContent = testData.complete;
-  $current.textContent = testData.current;
-  $remain.textContent = testData.remain;
 }
 
 $button.addEventListener('click', function() {
