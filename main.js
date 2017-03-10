@@ -18,8 +18,8 @@ var $testContent = document.querySelector('.test-content');
 
 // GLOBAL VARIABLES
 var text = 'You are watching me type.';
+var isTestActive = false;
 var testData = {
-  isTestActive: false;
   remain: text,
   current: '',
   complete: '',
@@ -40,7 +40,7 @@ var testData = {
 
 function initialize(testData) {
   if (testData.remain.length > 0) {
-    testData.isTestActive = true;
+    isTestActive = true;
     testData.moveTextPos();
   } else {
     alert('nothing to test');
@@ -62,11 +62,11 @@ function alertOnComplete(error) {
 // EVENT LISTENERS
 
 document.addEventListener('keydown', function(event) {
-  if (testData.isTestActive) {
+  if (isTestActive) {
     if (event.key === testData.current) {
       if (testData.remain.length === 0) {
         alertOnComplete(testData.error);
-        testData.isTestActive = false;
+        isTestActive = false;
       }
       testData.moveTextPos();
       testData.updateElements();
