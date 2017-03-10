@@ -55,9 +55,9 @@ function removeFirstChar(text) {
 
 function alertOnComplete(error) {
   if (error === 1) {
-    alert('Completed with' + ' ' + testData.error + ' ' + 'error');
+    alert('Completed with' + ' ' + error + ' ' + 'error');
   } else {
-    alert('Completed with' + ' ' + testData.error + ' ' + 'errors');
+    alert('Completed with' + ' ' + error + ' ' + 'errors');
   }
 }
 // EVENT LISTENERS
@@ -66,7 +66,7 @@ document.addEventListener('keydown', function(event) {
   if (isTestActive) {
     if (event.key === testData.current) {
       if (testData.remain.length === 0) {
-        alertOnComplete(testData.errors);
+        alertOnComplete(testData.error);
         isTestActive = false;
       }
       testData.moveTextPos();
