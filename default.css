@@ -1,0 +1,11 @@
+#complete {
+  color: green;
+}
+
+#current {
+  color: yellow;
+}
+
+#remain {
+  color: black;
+}
