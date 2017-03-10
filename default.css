@@ -3,7 +3,7 @@
 }
 
 .current {
-  font-weight: bold;
+  text-decoration: underline;
 }
 
 #remain {
@@ -18,11 +18,25 @@
   color: red;
 }
 
+h1 {
+  font-size: 300%;
+}
 body {
   background-color: light-blue;
 }
 
-* {
+span {
   margin: 0;
   padding: 0;
+}
+
+.test-content {
+  position: relative;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.container {
+  height: 100vh;
 }

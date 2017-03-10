@@ -6,7 +6,7 @@
   5. create function to determine game state
   X 6. create keypress event listener
   X 7. determine if pressed key is valid
-  8. create way to update class of span depending on accuracy
+  X 8. create way to update class of span depending on accuracy
 
 */
 
@@ -16,7 +16,7 @@ var $current = document.querySelector('.current');
 var $remain = document.querySelector('#remain');
 
 // GLOBAL VARIABLES
-var text = 'this is merely a test';
+var text = 'You are watching me type.';
 var isTestActive = false;
 var isTestComplete = false;
 var testData = {
@@ -75,4 +75,6 @@ document.addEventListener('keydown', function(event) {
 
 // INITIALIZE
 
-initialize(testData);
+document.addEventListener('DOMContentLoaded', function () {
+  initialize(testData);
+})
