@@ -49,13 +49,6 @@ function initialize(testData) {
 
 function removeFirstChar(text) {
   return text.substr(1,text.length -1);
-  /*
-  if (text.length !== 1) {
-    return text.substr(1,text.length -1);
-  } else {
-    return '';
-  }
-  */
 }
 
 function setElementClass(element, className) {
@@ -65,12 +58,15 @@ function setElementClass(element, className) {
 document.addEventListener('keydown', function(event) {
   if (isTestActive) {
     if (testData.remain.length == 0) {
-      alert('done');
+      alert(testData.error + ' ' + 'errors');
       isTestActive = false;
     } else {
       if (event.key == testData.current) {
         testData.moveTextPos();
         testData.updateElements();
+      } else {
+        testData.error++;
+
       }
     }
   }
