@@ -64,6 +64,7 @@ $button.addEventListener('click', function() {
   if (isTestActive) {
     if (testData.remain.length == 0) {
       alert('done');
+      isTestActive = false;
     } else {
       testData.moveTextPos();
       testData.updateElements();
