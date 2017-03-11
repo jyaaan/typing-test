@@ -62,7 +62,7 @@ function alertOnComplete(error) {
 // EVENT LISTENERS
 
 document.addEventListener('keydown', function(event) {
-  if (isTestActive) {
+  if (isTestActive && event.key !== 'Shift') {
     if (event.key === testData.current) {
       if (testData.remain.length === 0) {
         alertOnComplete(testData.error);
@@ -73,11 +73,9 @@ document.addEventListener('keydown', function(event) {
       $current.setAttribute('id', 'active');
       $testContent.classList.remove('shake');
     } else {
-      if (event.key !== 'Shift'){
-        testData.error++;
-        $current.setAttribute('id', 'error');
-        $testContent.classList.add('shake');
-      }
+      testData.error++;
+      $current.setAttribute('id', 'error');
+      $testContent.classList.add('shake');
     }
   }
 })
