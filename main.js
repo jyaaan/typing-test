@@ -14,11 +14,11 @@
 var $complete = document.querySelector('#complete');
 var $current = document.querySelector('.current');
 var $remain = document.querySelector('#remain');
+var $testContent = document.querySelector('.test-content');
 
 // GLOBAL VARIABLES
 var text = 'You are watching me type.';
 var isTestActive = false;
-var isTestComplete = false;
 var testData = {
   remain: text,
   current: '',
@@ -28,7 +28,6 @@ var testData = {
     this.complete += this.current;
     this.current = this.remain.substr(0, 1);
     this.remain = removeFirstChar(this.remain);
-    this.pos++;
   },
   updateElements: function() {
     $complete.textContent = this.complete;
@@ -53,27 +52,35 @@ function removeFirstChar(text) {
   return text.substr(1,text.length -1);
 }
 
+function alertOnComplete(error) {
+  if (error === 1) {
+    alert('Completed with' + ' ' + error + ' ' + 'error');
+  } else {
+    alert('Completed with' + ' ' + error + ' ' + 'errors');
+  }
+}
 // EVENT LISTENERS
 
 document.addEventListener('keydown', function(event) {
-  if (isTestActive) {
-    if (testData.remain.length == 0) {
-      alert(testData.error + ' ' + 'errors');
-      isTestActive = false;
-    } else {
-      if (event.key == testData.current) {
-        testData.moveTextPos();
-        testData.updateElements();
-        $current.setAttribute('id', 'active');
-      } else {
-        testData.error++;
-        $current.setAttribute('id', 'error');
+  if (isTestActive && event.key !== 'Shift') {
+    if (event.key === testData.current) {
+      if (testData.remain.length === 0) {
+        alertOnComplete(testData.error);
+        isTestActive = false;
       }
+      testData.moveTextPos();
+      testData.updateElements();
+      $current.setAttribute('id', 'active');
+      $testContent.classList.remove('shake');
+    } else {
+      testData.error++;
+      $current.setAttribute('id', 'error');
+      $testContent.classList.add('shake');
     }
   }
 })
 
-// INITIALIZE
+// INITIALIZER
 
 document.addEventListener('DOMContentLoaded', function () {
   initialize(testData);
